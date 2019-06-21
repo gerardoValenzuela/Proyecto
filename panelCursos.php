@@ -8,8 +8,17 @@
 				include "panelListadeCursos.php";
 			?>
 		</div>
-		<div class="span9">
-			detalle
+		<div class="span9" ng-app="">
+			<div id = "registrarCurso">
+			  
+			</div>
+			<div id = "mostrarCursos">
+				
+			  
+			</div>
+			<div id = "eliminarCurso">
+			  
+			</div>
 		</div>
 	</div>
 

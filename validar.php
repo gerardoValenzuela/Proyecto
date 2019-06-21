@@ -15,7 +15,7 @@ if ($f2 = mysqli_fetch_assoc($sql2)) {
         $_SESSION['rol']  = $f2['rol'];
 
         echo '<script>alert("BIENVENIDO ADMINISTRADOR")</script> ';
-        echo "<script>location.href='inicioAdmin.php'</script>";
+        echo "<script>location.href='indexAdmin.php'</script>";
 
     }
 }

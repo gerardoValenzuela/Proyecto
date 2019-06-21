@@ -15,34 +15,7 @@
 	<style>
 		body {font-family: Arial, Helvetica, sans-serif;}
 
-		.navbar {
-		  width: 100%;
-		  background-color: #555;
-		  overflow: auto;
-		}
-
-		.navbar a {
-		  float: left;
-		  padding: 12px;
-		  color: white;
-		  text-decoration: none;
-		  font-size: 14px;
-		}
-
-		.navbar a:hover {
-		  background-color: #05b;
-		}
-
-		.active {
-		  background-color: #000;
-		}
-
-		@media screen and (max-width: 500px) {
-		  .navbar a {
-			float: none;
-			display: block;
-		  }
-		}
+		
 		.sinBorde{
 			border-width:0px !important;
 		}
@@ -57,7 +30,5 @@
 		}
 		/* Tabs*/
 	</style>
-	<script language = "javascript">
 	
-	</script>
   </head>
