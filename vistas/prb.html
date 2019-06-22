@@ -1,0 +1,267 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Administración</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <link rel="shortcut icon" href="assets/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<style>
+		body {font-family: Arial, Helvetica, sans-serif;}
+		.sinBorde{
+			border-width:0px !important;
+		}
+		nav-tabs .active a{
+			border-width:0px !important;
+		}
+		.navbar-inverse .nav .active>a{
+			background-color:#44b !important;
+			webkit-border-radius: 0px 0px 0 0 !important;
+			-moz-border-radius: 0px 0px 0 0 !important;
+			border-radius: 0px 0px 0 0 !important;
+		}
+		/* Tabs*/
+	</style>
+</head>
+<body data-offset="40" background="images/arco.jpg" style="background-position: center top; " ng-app="myApp" ng-controller="myCtrl"> 
+    <div class="container">
+		<header class="header">
+            <div class="row">
+                <h2 class="span">Administración</h2>
+            </div>
+        </header>
+        <div class="row" style = "background-color: transparent;">
+            <div class="navbar navbar-inverse"">
+                <div class="navbar-inner">
+                        
+                        <ul class="nav nav-tabs sinBorde">
+                            <li class="active"><a data-toggle="tab" class = "sinBorde" href="#inicio" ng-click = "presentaVista('inicio')"><i class="fa fa-fw fa-home"></i> Inicio</a></li>
+                            <li><a data-toggle="tab" class = "sinBorde" href="#usuarios" ng-click = "presentaVista('usuarios')"><i class="fa fa-fw fa-users"></i> Usuarios</a></li>
+                            <li><a data-toggle="tab" class = "sinBorde" href="#cursos" ng-click = "presentaVista('listadodeCursos')"><i class="fa fa-fw fa-book"></i> Cursos</a></li>
+                        </ul>
+
+                        <form action="#" class="navbar-search form-inline" style="margin-top:6px">
+
+                        </form>
+                        <ul class="nav pull-right">
+                        <li><a href="">Bienvenido <strong>Administrador</strong> </a></li>
+                            <li><a href="desconectar.php"> Cerrar Cesión </a></li>
+                        </ul>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div id="inicio" class="row" ng-show="vistas.inicio"  style = "background-color: transparent;color:#ffffff;">
+    <h3>INICIO</h3>
+</div>
+                       
+        <div id="usuarios" class="row" ng-show="vistas.usuarios"  style = "background-color: transparent;color:#ffffff;">
+    <h3>Usuarios</h3>
+    <div ng-app="">
+        <p>Name: <input type="text" ng-model="name"></p>
+        <p ng-bind="name"></p>
+    </div>
+</div>       
+        <div id="cursos" class="row" ng-show="vistas.cursos" style = "background-color: transparent;color:#ffffff;">
+    <h3>Cursos</h3>
+</div>       
+        <div id="listadodeCursos" class="row" ng-show="vistas.listadodeCursos"  style = "background-color: transparent;color:#000000;">
+  <div>
+    <div class = "span6">
+      <h3>Cursos disponibles</h3>
+    </div>
+    <div class = "span6" style = "text-align:right;">
+      <h3><button type="button" class="btn btn-info" data-target="#agregarCurso" ng-click = "presentaVista('agregarCurso')"><i class="fa fa-fw fa-plus"></i>Agregar Curso</button></h3>
+    </div>
+  </div>
+  
+  <div class = "card" ng-repeat="curso in cursos" style = "background-color:transparent;">
+    <table datatable="ng" dt-options="vm.dtOptions" cell-spacing = "0px" cell-padding = "0px" class=" table table-striped" style = "background-color:#dddddd; font-weight:bolder; border:2; border-style:solid;">
+      <tbody>
+        <tr>
+          <td style = "background-color:#888888; color:#ffffff; font-weight:bolder;">{{curso.nombre}}</td>
+          <td style = "background-color:#888888; color:#ffffff; font-weight:bolder; text-align:right;">
+            <div class="btn-group">
+              <button type="button" class="btn btn-info" ng-click = "presentaVista('editarCurso')"><i class="fa fa-fw fa-edit"></i>Editar</button>
+              <button type="button" class="btn btn-warning" ng-click = "presentaVista('editarCurso')"><i class="fa fa-fw fa-remove"></i>Eliminar</button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan = "2">{{curso.descripcion}}</td>
+        </tr>
+        <tr>
+          <td colspan = "2" style = "text-align:center;">
+            <table style = "width:98%">
+              <tr>
+                <td>
+                  Modulos:
+                </td>
+                <td style = "text-align:right">
+                  <button type="button" class="btn btn-info" ng-click = "presentaVista('agregarModulo')"><i class="fa fa-fw fa-plus"></i>Agregar Modulo</button>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td colspan = "2" style = "text-align:center; background-color:888888;">
+            <table width = "98%" style = "border:1px;" class="table table-bordered table-striped">
+              <tr>
+                <td>Nombre</td>
+              </tr>
+              <tr>
+                <td>Descripción</td>
+              </tr>
+              <tr>
+                <td>PDF</td>
+              </tr>
+              <tr>
+                <td style = "text-align:center;">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-info" ng-click = "presentaVista('editarModulo')"><i class="fa fa-fw fa-edit"></i>Editar Modulo</button>
+                    <button type="button" class="btn btn-warning" ng-click = "presentaVista('eliminarModulo')"><i class="fa fa-fw fa-remove"></i>Eliminar Modulo</button>
+                  </div>
+                </td>
+              </tr>
+            </table>
+           
+            
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>       
+        <div id="agregarCurso" class="row"  style = "background-color: transparent;color:#000000;">
+    <span>
+        <form ng-submit="registrarCurso(nombre, descripcion)"  ng-controller="ExampleController">
+            <div class="form-group" style = "text-align:left;">
+                <label for="nombre">Nombre:</label>
+                <input type="text" class="form-control" id="nombre"  name="nombre" ng-model = "nombreCursoNuevo">
+            </div>
+            <div class="form-group" style = "text-align:left;">
+                <label for="descripcion">Descripcion:</label>
+                <textarea class="form-control" name="descripcion"  id="descripcion" cols = "100" rows = "10" ng-model = "descripcionCursoNuevo"></textarea>
+            </div>
+            <button type="button" class="btn btn-default" onclick = "enviarFormulario()">Registrar</button>
+        </form>
+    </span>
+</div>
+       
+        <div id="editarCurso" class="row" ng-show="vistas.editarCurso"  style = "background-color: transparent;color:#000000;">
+    <span>
+        <form action="/action_page.php">
+            <div class="form-group" style = "text-align:left;">
+                <label for="nombre">Nombre:</label>
+                <label for="nombre"></label>
+                <input type="hidden" class="form-control" id="id">
+            </div>
+            <div class="form-group" style = "text-align:left;">
+                <label for="nombre">Nombre:</label>
+                <input type="text" class="form-control" id="nombre">
+            </div>
+            <div class="form-group" style = "text-align:left;">
+                <label for="descripcion">Descripcion:</label>
+                <textarea class="form-control" id="descripcion" cols = "100" rows = "10"></textarea>
+            </div>
+            <button type="submit" class="btn btn-default">Registrar</button>
+        </form>
+    </span>
+</div>
+       
+        <div id="eliminarCurso" class="row" ng-show="vistas.eliminarCurso"  style = "background-color: transparent;color:#000000;">
+    <span>
+        <form action="/action_page.php">
+            <div class="form-group" style = "text-align:left;">
+                <label for="nombre">Nombre:</label>
+                <label for="nombre"></label>
+                <input type="hidden" class="form-control" id="id">
+            </div>
+            <div class="form-group" style = "text-align:left;">
+                <label for="nombre">Nombre:</label>
+                <input type="text" class="form-control" id="nombre">
+            </div>
+            <div class="form-group" style = "text-align:left;">
+                <label for="descripcion">Descripcion:</label>
+                <textarea class="form-control" id="descripcion" cols = "100" rows = "10"></textarea>
+            </div>
+            <button type="submit" class="btn btn-default">Registrar</button>
+        </form>
+    </span>
+</div>       
+        <div id="agregarModulo" class="row" ng-show="vistas.agregarModulo"  style = "background-color: transparent;color:#000000;">
+    <span>
+        <form action="/action_page.php">
+            <div class="form-group" style = "text-align:left;">
+                <label for="nombre">Nombre:</label>
+                <input type="text" class="form-control" id="nombre">
+            </div>
+            <div class="form-group" style = "text-align:left;">
+                <label for="descripcion">Descripcion:</label>
+                <textarea class="form-control" id="descripcion" cols = "100" rows = "10"></textarea>
+            </div>
+            <button type="submit" class="btn btn-default">Registrar</button>
+        </form>
+    </span>
+</div>
+       
+        <div id="editarModulo" class="row" ng-show="vistas.editarModulo"  style = "background-color: transparent;color:#000000;">
+    <span>
+        <form action="/action_page.php">
+            <div class="form-group" style = "text-align:left;">
+                <label for="nombre">Nombre:</label>
+                <input type="text" class="form-control" id="nombre">
+            </div>
+            <div class="form-group" style = "text-align:left;">
+                <label for="descripcion">Descripcion:</label>
+                <textarea class="form-control" id="descripcion" cols = "100" rows = "10"></textarea>
+            </div>
+            <button type="submit" class="btn btn-default">Registrar</button>
+        </form>
+    </span>
+</div>
+       
+        <div id="eliminarModulo" class="row" ng-show="vistas.eliminarModulo"  style = "background-color: transparent;color:#000000;">
+    <span>
+        <form action="/action_page.php">
+            <div class="form-group" style = "text-align:left;">
+                <label for="nombre">Nombre:</label>
+                <input type="text" class="form-control" id="nombre">
+            </div>
+            <div class="form-group" style = "text-align:left;">
+                <label for="descripcion">Descripcion:</label>
+                <textarea class="form-control" id="descripcion" cols = "100" rows = "10"></textarea>
+            </div>
+            <button type="submit" class="btn btn-default">Registrar</button>
+        </form>
+    </span>
+</div>        <!-- Footer
+            ================================================== -->
+        <hr class="soften"/>
+        <footer class="footer">
+            <p>&copy; Copyright Sele <br/><br/></p>
+        </footer>
+    </div><!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="bootstrap/js/jquery-1.8.3.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script src="js/app.js"></script>
+	
+		
+</body>
+</html>

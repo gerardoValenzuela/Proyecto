@@ -15,7 +15,7 @@
           <td style = "background-color:#888888; color:#ffffff; font-weight:bolder;">{{curso.nombre}}</td>
           <td style = "background-color:#888888; color:#ffffff; font-weight:bolder; text-align:right;">
             <div class="btn-group">
-              <button type="button" class="btn btn-info" ng-click = "presentaVista('editarCurso')"><i class="fa fa-fw fa-edit"></i>Editar</button>
+              <button type="button" class="btn btn-info" ng-click = "presentaVista1('editarCurso')" idCurso = "{{curso.id}}"><i class="fa fa-fw fa-edit"></i>Editar</button>
               <button type="button" class="btn btn-warning" ng-click = "presentaVista('editarCurso')"><i class="fa fa-fw fa-remove"></i>Eliminar</button>
             </div>
           </td>

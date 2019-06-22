@@ -44,6 +44,7 @@
 </head>
 <body data-offset="40" background="images/arco.jpg" style="background-position: center top; " ng-app="myApp" ng-controller="myCtrl"> 
     <div class="container">
+
 		<header class="header">
             <div class="row">
                 <h2 class="span">Administración</h2>
@@ -72,15 +73,25 @@
         </div>
 
         <?php include "vistas/inicio.php"; ?>
+       
         <?php include "vistas/usuarios.php"; ?>
+       
         <?php include "vistas/cursos.php"; ?>
+       
         <?php include "vistas/listadodeCursos.php"; ?>
+       
         <?php include "vistas/agregarCurso.php"; ?>
+       
         <?php include "vistas/editarCurso.php"; ?>
+       
         <?php include "vistas/eliminarCurso.php"; ?>
+       
         <?php include "vistas/agregarModulo.php"; ?>
+       
         <?php include "vistas/editarModulo.php"; ?>
+       
         <?php include "vistas/eliminarModulo.php"; ?>
+
         <!-- Footer
             ================================================== -->
         <hr class="soften"/>
@@ -88,6 +99,7 @@
             <p>&copy; Copyright Sele <br/><br/></p>
         </footer>
     </div><!-- /container -->
+    {{variable}}
 
     <!-- Le javascript
     ================================================== -->
