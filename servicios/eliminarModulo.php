@@ -6,13 +6,13 @@
         //echo "//Marca 2";
         //header("Location:index2.php");
     }
-    $idCurso = $_GET['idCurso'];
-    $idModulo = $_GET['idModulo'];
-    $pdf = $_GET['pdf'];
-    $nombre = $_GET['nombre'];
-    $descripcion = $_GET['descripcion'];
+    $idCurso = $_POST['idCurso'];
+    $idModulo = $_POST['idModulo'];
+    //$pdf = $_GET['pdf'];
+    $nombre = $_POST['nombre'];
+    $descripcion = $_POST['descripcion'];
     require "../connect_db.php";
-    $sql = "Delete from Modulo  where id = ".$idModulo.';';
+    $sql = "delete from modulo  where id = ".$idModulo.';';
     $result = mysqli_query($mysqli, $sql);
     if ($result) {
         header("Location:../indexAdmin.php?v=listadodeCursos");

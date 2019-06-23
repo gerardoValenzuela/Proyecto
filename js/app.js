@@ -17,6 +17,7 @@ app.controller('myCtrl', function($scope, $http) {
   $scope.nombreCursoNuevo = "";
   $scope.cursoEnEdicion = null;
   $scope.moduloEnEdicion = null;
+  $scope.usuarioEnEdicion = null;
   
   vistas = new Object();
   vistas.usuarios = false;
@@ -29,6 +30,8 @@ app.controller('myCtrl', function($scope, $http) {
   vistas.agregarModulo = false;
   vistas.editarModulo = false;
   vistas.eliminarModulo = false;
+  vistas.listadodeUsuarios = false;
+  vistas.editarUsuario = false;
   if(params.v){
     vistas[params.v] = true;
   }else{
@@ -36,6 +39,7 @@ app.controller('myCtrl', function($scope, $http) {
   }
   $scope.vistas = vistas;
   $scope.cursos = new Array();
+  $scope.usuarios = new Array();
     
 
 
@@ -156,6 +160,39 @@ app.controller('myCtrl', function($scope, $http) {
     
         $scope.vistas = vistas1;
     }
+    $scope.presentaVista3 = function(vista, id) {
+        idUsuario = parseInt(event.target.getAttribute("idUsuario"));
+        
+        for(var i = 0; i < $scope.usuarios.length; i++){
+            if($scope.usuarios[i].id == idUsuario){
+                $scope.usuarioEnEdicion = $scope.usuarios[i];
+                break;
+            }
+        }
+        
+        
+        
+        vistas1 = new Object();
+        for(var i in vistas){
+    
+            
+            vistas1[i] = vistas[i];
+            if(vistas1[i]){
+                if(i == vista){
+                    vistas1[i] = true;
+                }else{
+                    vistas1[i] = false;
+                }
+            }
+            else{
+                if(i == vista){
+                    vistas1[i] = true;
+                }
+            }
+        }  
+    
+        $scope.vistas = vistas1;
+    }
     
     $scope.actualizaCursos = function(){ 
         if($scope.cursos.length == 0){
@@ -164,6 +201,16 @@ app.controller('myCtrl', function($scope, $http) {
                 //alert("respuesta: " + response.data);
                 $scope.cursos = eval(response.data);
                 //alert("cursos: " + $scope.cursos.length);
+            });
+        }
+    }
+    $scope.actualizaUsuarios = function(){ 
+        if($scope.cursos.length == 0){
+            $http.get("servicios/listadodeUsuarios.php")
+                .then(function (response) {
+                //alert("respuesta: " + response.data);
+                $scope.usuarios = eval(response.data);
+                //alert("usuarios: " + $scope.usuarios.length);
             });
         }
     }
@@ -178,6 +225,7 @@ app.controller('myCtrl', function($scope, $http) {
         });
     }
     $scope.actualizaCursos();
+    $scope.actualizaUsuarios();
     
 });
 function obtenParametros(){

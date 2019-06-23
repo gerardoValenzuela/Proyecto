@@ -10,6 +10,7 @@
                 <textarea class="form-control" id="descripcion" name="descripcion" cols = "100" rows = "10" ng-model = "cursoEnEdicion.descripcion"></textarea>
             </div>
             <button type="submit" class="btn btn-default">Actualizar</button>
+            <button type="button" class="btn btn-default" ng-click = "presentaVista('listadodeCursos')">Cancelar</button>
         </form>
     </span>
 </div>

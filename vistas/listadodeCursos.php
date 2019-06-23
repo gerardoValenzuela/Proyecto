@@ -39,6 +39,8 @@
 
               <tr >
                 <td>
+                  <div>Modulo:{{modulo.consecutivo}}</div>
+                  <br>
                   <div>Nombre:{{modulo.nombre}}</div>
                   <br>
                   <div>Descripción:{{modulo.descripcion}}</div>

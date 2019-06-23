@@ -11,10 +11,20 @@
     $id = $_GET['id'];
     require "../connect_db.php";
     $sql = "delete from `curso`  where id= ".$id.";"; 
+    $dir_subida = '../pdfs/';
+    if(file_exists ( $dir_subida . $idCurso )){
+        rmdir ( $dir_subida . $idCurso  );
+    }else{
+        
+    }
     $result = mysqli_query($mysqli, $sql);
     if ($result) {
-        header("Location:../indexAdmin.php?v=listadodeCursos");
-        echo "true";
+        $sql1 = "delete from `modulo`  where idCurso= ".$id.";"; 
+        $result1 = mysqli_query($mysqli, $sql1);
+        if ($result1) {
+            header("Location:../indexAdmin.php?v=listadodeCursos");
+            echo "true";
+        }
     } else {
         echo '\nsql'.$sql;
         echo '\nnombre'.$nombre;

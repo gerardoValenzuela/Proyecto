@@ -12,7 +12,7 @@
                 <input type="text" class="form-control" id="nombreCurso" name = "nombreCurso" ng-model = "cursoEnEdicion.nombre" readonly>
             </div>
             <div class="form-group" style = "text-align:left;">
-                <label for="idCurso" style = "font-weight:bolder;">Consecutivo:</label>
+                <label for="idCurso" style = "font-weight:bolder;">Número:</label>
                 <input type="text" class="form-control" id="consecutivo" name = "consecutivo">
             </div>
             <div class="form-group" style = "text-align:left;">

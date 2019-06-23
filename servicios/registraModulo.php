@@ -8,16 +8,21 @@
     }
     $idCurso = $_POST['idCurso'];
     //$pdf = $_POST['pdf'];
+    $consecutivo = $_POST['consecutivo'];
     $nombre = $_POST['nombre'];
     $descripcion = $_POST['descripcion'];
     $dir_subida = '../pdfs/';
-    $fichero_subido = $dir_subida . basename($_FILES['pdf']['name']);
+    $fichero_subido = $dir_subida . $idCurso. "/" . basename($_FILES['pdf']['name']);
     
     require "../connect_db.php";
-    $sql = "INSERT INTO Modulo (idCurso, nombre, descripcion, pdf) VALUES (" . $idCurso . ',"' . $nombre . '","' . $descripcion . '","' . $_FILES['pdf']['name'].'");';
+    $sql = "INSERT INTO Modulo (idCurso, consecutivo, nombre, descripcion, pdf) VALUES (" . $idCurso . ',"'.$consecutivo.'","' . $nombre . '","' . $descripcion . '","' . $_FILES['pdf']['name'].'");';
     $result = mysqli_query($mysqli, $sql);
     if ($result) {
-        
+        if(file_exists ( $dir_subida . $idCurso )){
+
+        }else{
+            mkdir($dir_subida . $idCurso. "/");
+        }
 
         echo '<pre>';
         if (move_uploaded_file($_FILES['pdf']['tmp_name'], $fichero_subido)) {
@@ -28,11 +33,10 @@
             echo 'Más información de depuración:';
             print_r($_FILES);
     
-            print "</pre>";
             echo "false";
         }
-
-       
+        print "</pre>";
+    
         
 
     } else {

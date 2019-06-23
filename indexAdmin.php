@@ -56,7 +56,7 @@
                         
                         <ul class="nav nav-tabs sinBorde">
                             <li class="active"><a data-toggle="tab" class = "sinBorde" href="#inicio" ng-click = "presentaVista('inicio')"><i class="fa fa-fw fa-home"></i> Inicio</a></li>
-                            <li><a data-toggle="tab" class = "sinBorde" href="#usuarios" ng-click = "presentaVista('usuarios')"><i class="fa fa-fw fa-users"></i> Usuarios</a></li>
+                            <li><a data-toggle="tab" class = "sinBorde" href="#usuarios" ng-click = "presentaVista('listadodeUsuarios')"><i class="fa fa-fw fa-users"></i> Usuarios</a></li>
                             <li><a data-toggle="tab" class = "sinBorde" href="#cursos" ng-click = "presentaVista('listadodeCursos')"><i class="fa fa-fw fa-book"></i> Cursos</a></li>
                         </ul>
 
@@ -92,12 +92,17 @@
        
         <?php include "vistas/eliminarModulo.php"; ?>
 
+        <?php include "vistas/editarUsuario.php"; ?>
+
+        <?php include "vistas/listadodeUsuarios.php"; ?>
+
+        
         <!-- Footer
             ================================================== -->
-        <hr class="soften"/>
-        <footer class="footer">
-            <p>&copy; Copyright Sele <br/><br/></p>
-        </footer>
+            <footer class="footer">
+                <hr class="soften"/>
+                <p>&copy; Copyright Sele <br/><br/></p>
+            </footer>
     </div><!-- /container -->
     {{variable}}
 

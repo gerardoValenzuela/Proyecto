@@ -2,7 +2,7 @@
     <div><h3>Eliminando modulo.</h3></div>
     <hr>
     <span>
-        <form action="servicios/eliminarModulo.php" method = "get">
+        <form action="servicios/eliminarModulo.php" method = "post">
             <div class="form-group" style = "text-align:left;">
                 <label for="idCurso" style = "font-weight:bolder;">idCurso:</label>
                 <input type="text" class="form-control" id="idCurso" name = "idCurso" ng-model = "cursoEnEdicion.id" readonly>
@@ -14,6 +14,10 @@
             <div class="form-group" style = "text-align:left;">
                 <label for="nombre" style = "font-weight:bolder;">Id del Modulo:</label>
                 <input type="text" class="form-control" id="idModulo" name="idModulo" ng-model = "moduloEnEdicion.id" readonly>
+            </div>
+            <div class="form-group" style = "text-align:left;">
+                <label for="nombre" style = "font-weight:bolder;">N&oacute;mero}:</label>
+                <input type="text" class="form-control" id="consecutivo" name="consecutivo" ng-model = "moduloEnEdicion.consecutivo" readonly>
             </div>
             <div class="form-group" style = "text-align:left;">
                 <label for="nombre" style = "font-weight:bolder;">Nombre del Modulo:</label>
