@@ -17,6 +17,8 @@ app.controller('myCtrl', function($scope, $http) {
   $scope.nombreCursoNuevo = "";
   $scope.cursoSeleccionado = null;
   $scope.moduloEnEdicion = null;
+  $scope.modulos = null;
+  $scope.documentoSeleccionado = "pdfs/git_manual.pdf";
   
   vistas = new Object();
   vistas.cursos = false;
@@ -28,6 +30,8 @@ app.controller('myCtrl', function($scope, $http) {
   }
   $scope.vistas = vistas;
   $scope.cursos = new Array();
+  $scope.modulos = new Array();
+  
     
 
   
@@ -160,10 +164,19 @@ app.controller('myCtrl', function($scope, $http) {
     }
     $scope.seleccionarCurso = function(){
         idCurso = event.target.getAttribute("idCurso");
-        alert("idCurso: " + idCurso);
         for(var i = 0; i < $scope.cursos.length; i++){
             if($scope.cursos[i].id == idCurso){
                 $scope.cursoSeleccionado = $scope.cursos[i];
+                $scope.modulos = $scope.cursos[i].modulos;
+                break;
+            }
+        }
+    }
+    $scope.seleccionarModulo = function(){
+        idModulo = event.target.getAttribute("idModulo");
+        for(var i = 0; i < $scope.modulos.length; i++){
+            if($scope.modulos[i].id == idModulo){
+                $scope.documentoSeleccionado = "pdfs/" + $scope.cursoSeleccionado.id + "/" + $scope.modulos[i].pdf;
                 break;
             }
         }
