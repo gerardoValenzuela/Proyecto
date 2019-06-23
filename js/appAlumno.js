@@ -15,7 +15,7 @@ app.controller('myCtrl', function($scope, $http) {
   $scope.variable = "variable";
   $scope.descripcionCursoNuevo = "";
   $scope.nombreCursoNuevo = "";
-  $scope.cursoEnEdicion = null;
+  $scope.cursoSeleccionado = null;
   $scope.moduloEnEdicion = null;
   
   vistas = new Object();
@@ -159,7 +159,14 @@ app.controller('myCtrl', function($scope, $http) {
         }
     }
     $scope.seleccionarCurso = function(){
-        alert("seleccionando curso" + event.target.getAttribute("idCurso"));
+        idCurso = event.target.getAttribute("idCurso");
+        alert("idCurso: " + idCurso);
+        for(var i = 0; i < $scope.cursos.length; i++){
+            if($scope.cursos[i].id == idCurso){
+                $scope.cursoSeleccionado = $scope.cursos[i];
+                break;
+            }
+        }
     }
     $scope.registrarCurso = function(){ 
         url = "servicios/registraCurso.php?nombre=" + encodeURI($scope.nombreCursoNuevo)  + "&descripcion=" + encodeURI($scope.descripcionCursoNuevo);

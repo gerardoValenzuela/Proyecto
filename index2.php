@@ -74,22 +74,13 @@ include "include/menu.php";
 <h3>MODULOS DEL CURSO</h3>
 <div class="row" style="text-align:center">
 			<div class="span2">
-				<div class="well well-small">
-					<h4>Modulo 1</h4>
-					<form method= "post" action="http://localhost/proyecto/subirpdf/lista.php">
+				<div class="well well-small" ng-repeat="modulo in cursoSeleccionado.modulos">
+					<h4>Modulo {{modulo.id}}</h4>
+					<form method= "post" action="http://localhost/proyecto/pdfs/{{modulo.id}}/{{modulo.pdf}}">
 					<button class="btn btn-outline-success">DETALLES</button>
-
-
-
-
-
-
-                    
 
 				</div>
 			</div>
-
-
 			<div class="span12">
 				<div class="well well-small">
 					<h4 >LO QUE REALMENTE NECESITAS APRENDER</h4><br>
