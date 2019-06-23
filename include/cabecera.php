@@ -1,1 +1,1 @@
-<h2 class="span">Administración</h2>
+<h2 class="span">Alumno</h2>

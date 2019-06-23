@@ -28,7 +28,7 @@ if (@!$_SESSION['user']) {
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
   </head>
-<body data-offset="40" background="images/ne.jpg" style="background-attachment: fixed">
+<body data-offset="40" background="images/ne.jpg" style="background-attachment: fixed" ng-app="myApp" ng-controller="myCtrl">
 <div class="container">
 <header class="header">
 <div class="row">
@@ -48,34 +48,25 @@ include "include/menu.php";
 
 <div id="myCarousel" class="carousel slide homCar">
 		<div class="carousel-inner" style="border-top:18px solid #222; border-bottom:1px solid #222; border-radius:4px;">
-		  <div class="item active">
-			<img src="images/compu.png" alt="#" style="min-height:250px; min-width:100%"/>
-			<div class="carousel-caption">
-				  <h4>Computación Básica, desde cero </h4>
+		  <div class="item" ng-repeat="curso in cursos" ng-click = "seleccionarCurso()" idCurso = "{{curso.id}}">
+			<img src="images/compu.png" alt="#" style="min-height:250px; min-width:100%" idCurso = "{{curso.id}}"/>
+			<div class="carousel-caption" idCurso = "{{curso.id}}">
+				  <h4 idCurso = "{{curso.id}}">{{curso.nombre}}&nbsp;</h4>
 				  <p>
-				   Aprenderás a manipular la computadora de una forma fácil, no importa si nunca has tenido contacto con una computadora.
+				  {{curso.descripcion}}&nbsp;
 				  </p>
 			</div>
 		  </div>
-		  <div class="item">
+		  <div class="item active">
 			<img src="images/pv.jpg" alt="#" style="min-height:250px; min-width:100%"/>
 			<div class="carousel-caption">
-				  <h4>Objetivo Institucional</h4>
+				  <h4>Inicio</h4>
 				  <p>
-				  Como parte integrante del sistema educativo estatal, esta Institución tiene como objeto la impartición de servicios educativos de nivel medio superior y educación superior.
+				  Pulsa sobre los botones de avance del carrusel para descubrir los diferentes cursos que tienes a tu disposicion.
 				  </p>
 			</div>
 		  </div>
-		  <div class="item">
-			<img src="images/lap.png" alt="#" style="min-height:250px; min-width:100%"/>
-			<div class="carousel-caption">
-				  <h4>Descripción</h4>
-				  <p>
-				  El objetivo de este curso es hacer que pierdas el miedo a la computadora y sepas manejarla de una forma desenvuelta y natural, es importante que sepas que es un curso básico que te llevará desde los aspectos más obvios y gradualmente veremos aspectos más avanzados de este mundo, no te quedes atrás y asegura tu lugar en esta nueva era de información.
-				  </p>
-				  <
-			</div>
-		  </div>
+		  
 		</div>
 	<a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
 	<a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
@@ -203,6 +194,9 @@ Excel es un programa que trabaja con hojas de cálculo integrado en el entorno W
  </footer>
 </div>
 
-	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script src="js/appAlumno.js"></script>
+	<script language = "javascript">
+    </script>
   </body>
 </html>
