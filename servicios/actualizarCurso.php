@@ -8,15 +8,21 @@
     }
     $nombre = $_GET['nombre'];
     $descripcion = $_GET['descripcion'];
+    $id = $_GET['id'];
     require "../connect_db.php";
-    $sql = "INSERT INTO curso (nombre, descripcion) VALUES ('".$nombre."', '".$descripcion ."');";
+    $sql = "UPDATE `curso` set `nombre` = '".$nombre."', `descripcion` = '".$descripcion."' where id= ".$id.";"; 
     $result = mysqli_query($mysqli, $sql);
     if ($result) {
         header("Location:../indexAdmin.php?v=listadodeCursos");
         echo "true";
-
     } else {
+        echo '\nsql'.$sql;
+        echo '\nnombre'.$nombre;
+        echo '\ndescuipcion'.$descripcion;
+        echo '\nid'.$id;
+        
         echo "false";
     }
     mysqli_close($mysqli);//desconectamos la base de datos
-?>
+  
+ ?>

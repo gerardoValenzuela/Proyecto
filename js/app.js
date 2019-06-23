@@ -9,16 +9,19 @@ function activaTab(tab){
 }
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope, $http) {
+  params =  window.obtenParametros();
+  
   $scope.count = 0;
   $scope.variable = "variable";
   $scope.descripcionCursoNuevo = "";
   $scope.nombreCursoNuevo = "";
   $scope.cursoEnEdicion = null;
+  $scope.moduloEnEdicion = null;
   
   vistas = new Object();
   vistas.usuarios = false;
   vistas.cursos = false;
-  vistas.inicio = true;
+  vistas.inicio = false;
   vistas.listadodeCursos = false;
   vistas.agregarCurso = false;
   vistas.editarCurso = false;
@@ -26,9 +29,18 @@ app.controller('myCtrl', function($scope, $http) {
   vistas.agregarModulo = false;
   vistas.editarModulo = false;
   vistas.eliminarModulo = false;
+  if(params.v){
+    vistas[params.v] = true;
+  }else{
+    vistas.inicio = true;
+  }
   $scope.vistas = vistas;
   $scope.cursos = new Array();
     
+
+
+  
+  
   
   /*$http.get('http://localhost/proyecto/servicios/listadodeCursos.php').
   success(function(data) {
@@ -36,37 +48,40 @@ app.controller('myCtrl', function($scope, $http) {
       $scope.cursos = data;
   });*/
 
-  function Curso(id, nombre, descripcion){
-    this.id = id;
-    this.nombre = nombre;
-    this.descripcion = descripcion;
-    this.modulos = new Array();
-  }	
+    function Curso(id, nombre, descripcion){
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.modulos = new Array();
+    }	
 
-  $scope.myFunction = function() {
+    $scope.myFunction = function() {
       alert("desde mi funcion");
-    $scope.count++;
-  }
-  $scope.presentaVista = function(vista) {
-    vistas1 = new Object();
-    for(i in vistas){
 
-        
-        vistas1[i] = vistas[i];
-        if(vistas1[i]){
-            if(i == vista){
-                vistas1[i] = true;
-            }else{
-                vistas1[i] = false;
+        $scope.count++;
+    }
+    
+    $scope.presentaVista = function(vista) {
+        vistas1 = new Object();
+        for(i in vistas){
+
+            
+            vistas1[i] = vistas[i];
+            if(vistas1[i]){
+                if(i == vista){
+                    vistas1[i] = true;
+                }else{
+                    vistas1[i] = false;
+                }
             }
-        }
-        else{
-            if(i == vista){
-                vistas1[i] = true;
+            else{
+                if(i == vista){
+                    vistas1[i] = true;
+                }
             }
-        }
-        $scope.vistas = vistas1;
-    } 
+            $scope.vistas = vistas1;
+        } 
+    }
     $scope.presentaVista1 = function(vista, id) {
         idCurso = parseInt(event.target.getAttribute("idCurso"));
         
@@ -77,7 +92,6 @@ app.controller('myCtrl', function($scope, $http) {
             }
         }
         
-        alert("$cursoEnEdicion: " + $scope.cursoEnEdicion);
         
         
         vistas1 = new Object();
@@ -101,6 +115,48 @@ app.controller('myCtrl', function($scope, $http) {
     
         $scope.vistas = vistas1;
     }
+    $scope.presentaVista2 = function(vista, id) {
+        idCurso = parseInt(event.target.getAttribute("idCurso"));
+        idModulo = parseInt(event.target.getAttribute("idModulo"));
+        
+        for(var i = 0; i < $scope.cursos.length; i++){
+            if($scope.cursos[i].id == idCurso){
+                $scope.cursoEnEdicion = $scope.cursos[i];
+                for(var j = 0; j < $scope.cursos[i].modulos.length; j++){
+                    if($scope.cursos[i].modulos[j].id == idModulo){
+                        $scope.moduloEnEdicion = $scope.cursos[i].modulos[j];
+                
+                    }
+                }
+                break;
+            }
+        }
+        
+        
+        
+        
+        vistas1 = new Object();
+        for(var i in vistas){
+    
+            
+            vistas1[i] = vistas[i];
+            if(vistas1[i]){
+                if(i == vista){
+                    vistas1[i] = true;
+                }else{
+                    vistas1[i] = false;
+                }
+            }
+            else{
+                if(i == vista){
+                    vistas1[i] = true;
+                }
+            }
+        }  
+    
+        $scope.vistas = vistas1;
+    }
+    
     $scope.actualizaCursos = function(){ 
         if($scope.cursos.length == 0){
             $http.get("servicios/listadodeCursos.php")
@@ -122,8 +178,29 @@ app.controller('myCtrl', function($scope, $http) {
         });
     }
     $scope.actualizaCursos();
-  }
+    
 });
+function obtenParametros(){
+    var params = new Object();
+    var location = "" + window.location;
+    var inicioParameters = location.indexOf("?");
+    var cadenaParametros = "";
+
+    var pars = new Array();
+    if(inicioParameters > 0){
+        cadenaParametros = location.substring(inicioParameters + 1);
+        pars = cadenaParametros.split("&");
+        for(var i = 0; i < pars.length; i++){
+            var posIgual = pars[i].indexOf("=");
+            if(posIgual > 0){
+                params[pars[i].substring(0, posIgual)] = pars[i].substring(posIgual + 1);
+            }
+        }
+        
+       
+    }
+    return params;
+}
 function enviarFormulario(){
     alert("por enviar formulario");
 }

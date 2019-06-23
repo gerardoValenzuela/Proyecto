@@ -6,10 +6,13 @@
         //echo "//Marca 2";
         //header("Location:index2.php");
     }
+    $idCurso = $_GET['idCurso'];
+    $idModulo = $_GET['idModulo'];
+    $pdf = $_GET['pdf'];
     $nombre = $_GET['nombre'];
     $descripcion = $_GET['descripcion'];
     require "../connect_db.php";
-    $sql = "INSERT INTO curso (nombre, descripcion) VALUES ('".$nombre."', '".$descripcion ."');";
+    $sql = "UPDATE Modulo  SET idCurso = ".$idCurso.', nombre="'.$nombre.'", descripcion = "'.$descripcion.'",pdf= "'. $pdf.'" where id = '.$idModulo.';';
     $result = mysqli_query($mysqli, $sql);
     if ($result) {
         header("Location:../indexAdmin.php?v=listadodeCursos");

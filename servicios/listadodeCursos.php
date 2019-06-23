@@ -19,7 +19,19 @@
             $cadena = $cadena.",";  
         }
         $rawdata[$i] = $row;
-        $cadena = $cadena.'{id:"'.$row["id"].'",nombre:"'.$row["nombre"].'",descripcion:"'.$row["nombre"].'"}'; 
+        $cadena = $cadena.'{id:'.$row["id"].',nombre:"'.$row["nombre"].'",descripcion:"'.$row["nombre"].'",modulos:';
+        $modulos = "[";
+        $sql1 = ("SELECT * FROM modulo where idCurso = ".$row["id"]." order by consecutivo;");
+        $result1 = mysqli_query($mysqli, $sql1);
+        while($row1 = mysqli_fetch_array($result1))
+        {   if($modulos != "["){
+                $modulos = $modulos.",";  
+            }
+        
+            $modulos = $modulos.'{id:'.$row1["id"].',consecutivo:'.$row1["consecutivo"].',nombre:"'.$row1["nombre"].'",descripcion:"'.$row1["nombre"].'",pdf:"'.$row1["pdf"].'"}';
+        }
+        $modulos = $modulos . "]";
+        $cadena = $cadena.$modulos."}";
         $i++;
     }
     $cadena = $cadena."]";
